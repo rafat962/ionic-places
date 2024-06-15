@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title>{{ isLogin? 'Login' :'Signup' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-grid >
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3" >
+          <ion-item>
+            <ion-input #emailCtrl="ngModel" required email ngModel  name="email" type="email" label="E-Mail" labelPlacement="floating" placeholder="Enter text"></ion-input>
+            </ion-item>
+              <ion-item *ngIf="emailCtrl.invalid && emailCtrl.touched">
+                <ion-text color="danger">
+                  <p color="" >Should be a valid email address.</p>
+                </ion-text>
+              </ion-item>
+          <ion-item>
+            <ion-input #passwordCtrl="ngModel" required ngModel name="password" minlength="4"  type="Password" label="Password" labelPlacement="floating" placeholder="Enter text"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="passwordCtrl.invalid && passwordCtrl.touched">
+            <ion-text color="danger">
+              <p color="" >Should at least be 4 characters long.</p>
+            </ion-text>
+          </ion-item>
+          <ion-button type="button" expand="block"  fill="clear" shape="round" (click)="onSwitchAuthMode()">
+            Switch to {{ isLogin ==='Login' ? 'Signup' : 'Login' }}
+          </ion-button>
+          <ion-button  type="submit"  class="ion-margin" color="primary" expand="block">
+            {{isLogin}}
+            </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3" >
+
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </form>
+</ion-content>

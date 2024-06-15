@@ -1,0 +1,60 @@
+<ion-header>
+<ion-toolbar>
+  <ion-title>{{selecedPlace.title}}</ion-title>
+  <ion-buttons slot="start">
+    <ion-button (click)="onCancle()">
+      <ion-icon slot="start" name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+</ion-header >
+<ion-content >
+  <form  (ngSubmit)="onBookPlace()" #f="ngForm">
+    <ion-grid >
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-input label="First Name" labelPlacement="floating" type="text" placeholder="Awesome Input" ngModel required name="first-name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-input label="Last Name" labelPlacement="floating" type="text" placeholder="Awesome Input" ngModel required name="last-name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-select label="Number of Guests" labelPlacement="floating" type="text" placeholder="Awesome Input" [ngModel]="'2'" required name="guest-number">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-datetime #startDateCtrl [ngModel]="startDate" [min]="selecedPlace.availableFrom" [max]=""  formatOptions="MMM DD YYYY" label="Form" labelPlacement="stacked" type="text" placeholder="Awesome Input"  required name="date-from"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-datetime [min]="startDateCtrl.value" [ngModel]="endDate" [max]=""  formatOptions="MMM DD YYYY" label="TO" labelPlacement="stacked" type="text" placeholder="Awesome Input"  required name="date-to"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+      <ion-button type="submit" (click)="onBookPlace()" expand="block" >
+        Book!
+      </ion-button>
+
+  </form>
+</ion-content>
